@@ -4,32 +4,24 @@
 </head>
 
 <body>
-    <div>
-        <h3>소감문</h3>
-        <hr>
-        <h2>{{post.title}}</h2>
-        <a class="btn btn-outline-secondary btn-sm" href="{% url 'edit' post.id %}" role="button">수정</a>
-        <a class="btn btn-outline-secondary btn-sm" href="{% url 'delete' post.id %}" role="button">삭제</a>
-        <a class="btn btn-outline-secondary btn-sm" href="{% url 'home' %}" role="button">홈으로</a>
-        <br><br>
-        <p>{{post.text}}</p>
-    </div>
+    <h2>후기</h2>
+    <a class="btn btn-outline-secondary btn-sm" href="{% url 'home' %}" role="button">홈</a>
     <hr>  
-    <p>댓글{{post.comments.count}}개</p>
+    <p>후기{{post.comments.count}}개</p>
     <hr>
     {% for comment in post.comments.all%}
     <div>
         <p><strong>{{comment.nickname}}</strong>{{comment.created_date}}</p>
         {{comment.text|linebreaks}}        
-        <a href="{% url 'comment_delete' comment_id=comment.id %}">댓글 삭제</a>
+        <a href="{% url 'comment_delete' comment_id=comment.id %}">후기 삭제</a>
     </div>
     <hr>
     {% empty%}
-    <p>댓글이 없습니다</p>
+    <p>후기가 없습니다</p>
     {% endfor %}
 
     <div class="form-group">
-        <h6>댓글 입력</h6>
+        <h6>후기 입력</h6>
         <form method="POST" action="{% url 'add_comment' post.id %}">
             {% csrf_token %}
             {{form.as_p}}
