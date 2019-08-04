@@ -4,7 +4,7 @@
 </head>
 
 <body>
-    <center><h3>LENS</h3></center>
+    <center><h3>생리대</h3></center>
     <p><div style="border: 1px; float: left; width: 50%;">박정은</div>
     <div style="border: 1px; float: right; width: 15%;">
     {% if user.is_active %}
@@ -24,42 +24,8 @@
     <center>
     {% for post in posts.all %}
         <div>
-             
-            <div>
-            <div class="bd-example">
-              <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDxdhwC748USRTyQh-rUdFTEykj_qbUhKcTOE2EYfgvJ_3x87O" class="d-block w-20" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5>Brown1</h5>  
-                      <p>직경 13.0/기간 3M/가격 30,000.</p>  
-                    </div>
-                  </div>
-                  <div class="carousel-item"> 
-                    <img src="data:image/jpeg;base64,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" class="d-block w-20" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5>Gray1</h5>
-                      <p>직경 12.8/기간 1D/가격 20,000</p>
-                    </div>
-                  </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev"> 
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>   
-                </a>
-              </div>
             </div>
-            <a class="btn btn-outline-secondary btn-sm" href="{% url 'detail' post.id %}" role="button">후기</a>
+            <a class="btn btn-outline-secondary btn-sm" href="{% url 'mypage' post.id %}" role="button">MYPAGE</a>
             </div>
         </div> 
     {% endfor %}
@@ -67,7 +33,7 @@
     <br><br><br>
     <hr>
     {% if user.is_active %}
-    <a class="btn btn-outline-secondary" href = "{% url 'new' %}" role="button">주문하기</a>
+    <a class="btn btn-outline-secondary" href = "{% url 'order' %}" role="button">주문하기</a>
     {% else %} 
     <h3 align="center"><a href="{% url 'signup' %}">{{post.summary}}</a></h3> 
     {% endif %}

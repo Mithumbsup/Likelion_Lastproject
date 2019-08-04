@@ -1,0 +1,124 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <div>
+    <h2>주문하기</h4>
+  </div>
+{% block content %}
+    {% load staticfiles %}
+    {% comment %} {% load thumbnail %} {% endcomment %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-x.y.z.js"></script>
+
+    <div class="content">
+        <div id="pagetitle">
+            <h3>PAYMENT</h3>
+        </div>
+        <div class="order_list">
+            <table>
+                <thead>
+                <tr>
+                    <th class="thumb">
+                        IMAGE
+                    </th>
+                    <th class="product">
+                        PRODUCT
+                    </th>
+                    <th class="quantity">
+                        QUANTITY
+                    </th>
+                    <th class="price">
+                        PRICE
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    {% comment %} <td class="thumb">
+                        {% thumbnail product.image "100x100" crop="center" as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ im.name }}">
+                        {% endthumbnail %}
+                    </td> {% endcomment %}
+                    <td class="product">
+                        {{ product.name }}
+                    </td>
+                    <td class="quantity">
+                        {{ quantity }}
+                    </td>
+                    <td>
+                        {{ product.price }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="order_option">
+            <form action="" method="POST" id="order-form">
+                {% csrf_token %}
+                <div>
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                    {{ initial }}
+                </div>
+                <input type="submit" class="btn" value="결제하기">
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+  {% comment %} <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">이름</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <span class="input-group-text" id="basic-addon2"></span>
+    </div>
+  </div>
+  <br><br>
+  <label for="basic-url">*필수*</label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3">주소</span>
+    </div>
+    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+  </div>
+  <div class="input-group mb-3">
+   <div class="input-group-prepend">
+     <br>
+     <span class="input-group-text">제품명</span>
+   </div>
+   <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+   <div class="input-group-append">
+     <span class="input-group-text"></span>
+   </div>
+  </div>
+  <div class="input-group mb-3">
+   <div class="input-group-prepend">
+     <br>
+     <span class="input-group-text">수량</span>
+    </div>
+   <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+   <div class="input-group-append">
+     <span class="input-group-text"></span>
+   </div>
+  </div>
+  <br>
+  <div class="input-group">
+   <div class="input-group-prepend">
+     <br>
+     <span class="input-group-text">요청사항</span>
+   </div>
+   <textarea class="form-control" aria-label="With textarea"></textarea>
+   <br>
+  </div>
+  <a class="btn btn-outline-secondary" href = "{% url 'home' %}" role="button">완료</a> {% endcomment %}
+</body>
