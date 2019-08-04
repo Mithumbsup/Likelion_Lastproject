@@ -5,8 +5,11 @@
 
 <body>
     <div>
-      <h2>MY PAGE</h2>
+      <h2>MY PAGE</h2>{{ user.username }}님
     </div>
+    <hr>
+    <a class="btn btn-outline-secondary btn-sm" href="{% url 'home'%}" role="button">HOME</a>
+    <hr>
     <div id="profile_account">
                     <ul>
                         <li>

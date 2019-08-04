@@ -23,10 +23,13 @@
     <br><br>
     <center>
     {% for post in posts.all %}
+    {% if user.is_active %}
+      <a class="btn btn-outline-secondary btn-sm" href="{% url 'mypage' post.id %}" role="button">MYPAGE</a>
+    {% else %} 
+      <h3 align="center"><a href="{% url 'signup' %}"></a></h3> 
+    {% endif %}
         <div>
-            </div>
-            <a class="btn btn-outline-secondary btn-sm" href="{% url 'mypage' post.id %}" role="button">MYPAGE</a>
-            </div>
+
         </div> 
     {% endfor %}
 

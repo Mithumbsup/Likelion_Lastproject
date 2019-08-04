@@ -3,6 +3,7 @@ from .models import Post, Comment, Order
 from django.utils import timezone
 from .forms import PostForm, CommentForm
 from .forms import OrderForm
+
 # Create your views here.
 def home(request):
     posts = Post.objects
@@ -19,9 +20,8 @@ def post_order(request,post_id):
     user = request.user
     categories = Category.objects.all()
     initial = {'name': product.name, 'amount': product.price, 'quantity': quantity}
-    cart = Cart.objects.filter(user=user)
+    # cart = Cart.objects.filter(user=user)
     if request.method == 'POST':
-        if 'buy' in request.POST:
             form = OrderForm(request.POST, initial=initial)
             if form.is_valid():
                 order = form.save(commit=False)
@@ -37,7 +37,6 @@ def post_order(request,post_id):
             return render(request, 'home/post_order.html', {
                 'form': form,
                 'quantity': quantity,
-                'iamport_shop_id': 'iamport',  # FIXME: 가맹점코드
                 'user': user,
                 'product': product,
                 'categories': categories,
@@ -53,9 +52,9 @@ def post_order(request,post_id):
 #         form=PostForm()
 #     return render(request,'home/post_order.html',{'form':form})
 
-def order_list(request, pk):
+def order_list(request, post_id):
     categories = Category.objects.all()
-    user = User.objects.get(pk=pk)
+    user = User.objects.get(pk=post_id)
     orders = Order.objects.filter(user=user)
     paginator = Paginator(orders, 5)
     page = request.GET.get('page')
