@@ -1,0 +1,57 @@
+{%extends "home/base.html"%}
+{% block content %}
+<div class="row">
+    <div class="col-xs-4">
+        <img src="{{ post.image.url }}" id="detail">
+    </div>
+    <div class="col-xs-8" style="text-align: left; padding-left: 20%; margin-top: 10%">
+        <h3><b>{{post.brand}}</b></h3>
+        <hr>
+        <h2><b>{{post.title}}</b></h2>
+    </div>
+</div>
+<h3><b>상세설명</b></h3>
+<hr>
+<p>{{post.text}}
+    <br>
+    <h3><b>성분분석</b></h3>
+    <hr>
+    <p>{{post.component}}</p>
+    <br>
+    <div style="float: right;">
+            <a href="{% url 'edit' post.id %}">수정</a>
+            <a href="{% url 'delete' post.id %}">삭제</a>
+            <a href="{% url 'home' %}">홈으로</a>
+        </div>
+    <br>
+    <hr>
+    <!--댓글창-->
+    <h3><b>고객후기</b></h3>
+    <hr>
+    <div style="text-align: center">
+        {% for comment in post.comments.all %}
+        <div class="row">
+            <div class="col-9" style="text-align:left">
+                <strong>{{user.username}}</strong>
+                {{comment.text|linebreaks}}</div>
+            <div class="col-3"><a href="{% url 'delete_comment' comment_id=comment.id %}">댓글삭제</a></div>
+        </div>
+        {%empty%}
+        <p>댓글이 없습니다.</p>
+        {%endfor%}
+        <div class="form-group">
+            <div class="row">
+                <div class="col-9">
+                    <form method="POST" action="{% url 'add_comment' post.id%}">
+                        {% csrf_token %}
+                        {{form.as_table}}
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="save btn btn-default">작성</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    {% endblock %}

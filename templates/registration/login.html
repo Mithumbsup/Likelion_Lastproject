@@ -1,6 +1,7 @@
-<head>login</head>
-<body>
-    <div>
+{%extends "home/base.html"%}
+
+{%block content%}
+    <div style="text-align: center">
         {% if form.errors %}
         <p>아이디나 비밀번호가 틀렸습니다.</p>
         {% endif %}
@@ -13,3 +14,4 @@
         </form>
     </div>
 </body>
+{% endblock %}

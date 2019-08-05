@@ -1,6 +1,7 @@
-<head>logout</head>
+{%extends "home/base.html"%}
 
-<body>
+{%block content%}
     <p>logout</p>
     <a href="{% url 'login'%}">Click here to login again.</a>
 </body>
+{% endblock %}

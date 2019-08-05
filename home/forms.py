@@ -4,12 +4,12 @@ from .models import Post, Comment, Order
 class PostForm(forms.ModelForm):
     class Meta:
         model=Post
-        fields={'title','text','author',}
+        fields={'title', 'brand', 'component' ,'text','author', 'image',}
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model=Comment
-        fields={'nickname','text',}
+        fields={'text',}
 
 class OrderForm(forms.ModelForm):
     class Meta:

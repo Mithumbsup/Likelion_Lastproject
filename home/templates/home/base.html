@@ -1,0 +1,85 @@
+{% load static %}
+{% load staticfiles %}
+
+<head>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        #content {
+            height: 250px;
+            background-color: rgb(253, 64, 121);
+        }
+
+        #logo {
+            margin-top: 20px;
+            width: 200px;
+            height: 50px;
+            margin-left: 100px;
+        }
+
+        #topphoto {
+            width: 450px;
+            height: 250px;
+        }
+
+        #detail {
+            width: 400px;
+            height: 400px;
+            margin-left: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <!--상단-->
+    <div class="container-fluid" id="content">
+        <div class="row">
+            <div class="col-xs-2">
+                    <a href="{% url 'home' %}"><img src="{% static "알고쓰자.png" %}" id="logo"></a>
+            </div>
+            <div class="col-xs-4">
+                    <a href="{% url 'home' %}"><img src="{% static "생리대1.png" %}" id="topphoto"></a>
+            </div>
+            <div class="col-xs-6" style="text-align: left">
+                <h2 style="margin-top: 10%; color: white;">생리대도 이제는 알고쓰자</h2>
+                <p style="color: white;">생리대의 주요성분과 상세설명 등 자세한 정보를 확인하세요.</p>
+                <br>
+                <br>
+                <br>
+                <div style="text-align: right;">
+                    {% if user.is_active %}
+                    <p>
+                        <b style="color: white;">
+                            {{ user.username }}님 반갑습니다
+                            <a href="{% url 'mypage'%}">My page</a>
+                            <a href="{% url 'logout' %}">Logout</a></p></b>
+                    {% else %}
+                    <p>
+                        <b style="color: white;">
+                            <a href="{% url 'signup' %}">Signup</a>
+                            <a href="{% url 'login' %}">Login</a></p></b>
+                    {% endif %}
+                </div>
+                <!--상단 끝-->
+            </div>
+        </div>
+    </div>
+    <!--아래내용-->
+    <div>
+        <br>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
