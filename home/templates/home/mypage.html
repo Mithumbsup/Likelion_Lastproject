@@ -1,4 +1,4 @@
-{%extends "home/base.html"%}
+{% extends "home/base.html"%}
 {% block content %}
 <a class="btn btn-outline-secondary btn-sm" href="{% url 'home'%}" role="button">HOME</a>
 <hr>
@@ -79,3 +79,30 @@
 </div>
 </body>
 {% endblock %}
+{%extends "home/base.html"%}
+{% comment %} {% block content %}
+<div class="text-center" style="align: center; color: black; margin-top: -20px;"> 
+5         <br><br> 
+6          
+7         <table border="1" width="900" height="auto" align="center" style="font-size: 24px;"> 
+8             <tr> 
+9                 <th style="text-align: center;">주문자</th> 
+10                 <th style="text-align: center;" width="30%">상품명</th> 
+11                 <th style="text-align: center;">주문금액</th> 
+12                 <th style="text-align: center;">배송비</th> 
+13                 <th style="text-align: center;">총주문금액</th> 
+14             </tr> 
+15             {% for order in orders.all %} 
+16                 <tr> 
+17                     <td style="text-align: center;"><a href="{% url 'order_detail' order.id %}">{{ order.orderer }}</a></td> 
+18                     <td style="text-align: center;" width="30%">{{ order.product }}</td> 
+19                     <td style="text-align: center;">{{ order.price }}</td> 
+20                     <td style="text-align: center;">{{ order.delivery_price }}</td> 
+21                     <td style="text-align: center;">{{ order.total_price }}</td> 
+22                 </tr> 
+23             {% endfor %} 
+24         </table> 
+25         <br><br> 
+26     </div> 
+
+{% endblock %} {% endcomment %}

@@ -14,9 +14,4 @@ class CommentForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['name', 'amount', 'quantity']
-        widgets = {
-            'name': forms.TextInput(attrs={'readonly': 'readonly'}),
-            'amount': forms.TextInput(attrs={'readonly': 'readonly'}),
-            'quantity': forms.TextInput(attrs={'readonly': 'readonly'}),
-        }
+        fields = {'product', 'orderer', 'postcode', 'address', 'phone1', 'phone2', 'email', 'message', 'price', 'delivery_price', 'total_price',}

@@ -1,124 +1,52 @@
-{% load static %}
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-
-<body>
-  <div>
-    <h2>주문하기</h4>
-  </div>
+{% extends "home/base.html"%}
 {% block content %}
-    {% load staticfiles %}
-    {% comment %} {% load thumbnail %} {% endcomment %}
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-x.y.z.js"></script>
-
-    <div class="content">
-        <div id="pagetitle">
-            <h3>PAYMENT</h3>
-        </div>
-        <div class="order_list">
-            <table>
-                <thead>
-                <tr>
-                    <th class="thumb">
-                        IMAGE
-                    </th>
-                    <th class="product">
-                        PRODUCT
-                    </th>
-                    <th class="quantity">
-                        QUANTITY
-                    </th>
-                    <th class="price">
-                        PRICE
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    {% comment %} <td class="thumb">
-                        {% thumbnail product.image "100x100" crop="center" as im %}
-                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ im.name }}">
-                        {% endthumbnail %}
-                    </td> {% endcomment %}
-                    <td class="product">
-                        {{ product.name }}
-                    </td>
-                    <td class="quantity">
-                        {{ quantity }}
-                    </td>
-                    <td>
-                        {{ product.price }}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="order_option">
-            <form action="" method="POST" id="order-form">
-                {% csrf_token %}
-                <div>
-                    <table>
-                        {{ form.as_table }}
-                    </table>
-                    {{ initial }}
-                </div>
-                <input type="submit" class="btn" value="결제하기">
+    <div style="align: center; color: black; background-color: #ff000;">
+        <div style="align-text: left; margin-left: 370px; margin-top: -20px; margin-bottom: -5px;">
+            <form action="{% url 'order_save' %}" style="font-size: 17px;"><br>
+                <p>  주문상품(*) : 
+                    <select name="product" style="margin-left: 10px;">
+                        <option value="">상품을 선택하세요.</option>
+                        <option value="a-5">좋은느낌(중형) : 7,500원 (22개입)</option>
+                        <option value="a-10"> 좋은느낌(대형) : 12,000원 (32개입)</option>
+                        <option value="a-20">좋은느낌(오버나이트) : 11,900원 (20개입)</option>
+                        <option value="b-5">바디피트(중형) : 4,000원 (18개입)</option>
+                        <option value="b-10">바디피트(대형) : 5,200원 (16개입)</option>
+                        <option value="b-20">바디피트(오버나이트) : 8,900원 (20개입)</option>
+                        <option value="c-5">화이트(중형) : 7,000원 (30개입)</option>
+                        <option value="c-10">화이트(대형) : 5,500원 (17개입)</option>
+                        <option value="c-20">화이트(오버나이트) : 11,010원 (28개입)</option>
+                    </select></p><br>
+                <p>  주문자명(*) : 
+                    <input type="text" name="orderer" style="margin-left: 10px;"></p><br>
+                <p>  수량(*) : 
+                    <input type="number" name="postcode" style="margin-left: 10px;"></p><br>
+                <p>  주소(*) : 
+                    <input type="text" name="address" style="margin-left: 45px;"></p><br>
+                <p>  우편변호(*) : 
+                    <input type="tel" name="phone2" style="margin-left: 20px;"></p><br>
+                <p>  전화번호(*) : 
+                    <input type="tel" name="phone1" style="margin-left: 10px;"></p><br>
+                <p>  이메일 : 
+                    <input type="email" name="email" style="margin-left: 35px;"></p><br>
+                <p>  배송메세지 : 
+                    <textarea cols=40 rows=5 name="message"></textarea></p><br>
+                <center><p style="margin-left: -370px;">* 표시는 필수 입력 항목입니다.</p></center>
+                <center><input type = "submit" value="주문하기" class="btn btn-success text-center" style="margin-left: -370px; margin-top:10px; margin-bottom: 10px;"></input></center>
             </form>
         </div>
     </div>
-{% endblock content %}
-  {% comment %} <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">이름</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-  </div>
+{% endblock %}
 
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-    <div class="input-group-append">
-      <span class="input-group-text" id="basic-addon2"></span>
+{% comment %} {% extends "shop/base.html" %}
+
+{% block content %}
+    <div style="align: center; color: black; background-color: #9a7749;">
+        <div style="margin-left: 400px; margin-top: -20px; margin-bottom: -5px;">
+            <form method = "POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <center><input type = "submit" value="주문하기" class="btn btn-success text-center" style="margin-left: -400px; margin-top:10px; margin-bottom: 10px;"></input></center>
+            </form>
+        </div>
     </div>
-  </div>
-  <br><br>
-  <label for="basic-url">*필수*</label>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon3">주소</span>
-    </div>
-    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-  </div>
-  <div class="input-group mb-3">
-   <div class="input-group-prepend">
-     <br>
-     <span class="input-group-text">제품명</span>
-   </div>
-   <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-   <div class="input-group-append">
-     <span class="input-group-text"></span>
-   </div>
-  </div>
-  <div class="input-group mb-3">
-   <div class="input-group-prepend">
-     <br>
-     <span class="input-group-text">수량</span>
-    </div>
-   <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-   <div class="input-group-append">
-     <span class="input-group-text"></span>
-   </div>
-  </div>
-  <br>
-  <div class="input-group">
-   <div class="input-group-prepend">
-     <br>
-     <span class="input-group-text">요청사항</span>
-   </div>
-   <textarea class="form-control" aria-label="With textarea"></textarea>
-   <br>
-  </div>
-  <a class="btn btn-outline-secondary" href = "{% url 'home' %}" role="button">완료</a> {% endcomment %}
-</body>
+{% endblock %} {% endcomment %}

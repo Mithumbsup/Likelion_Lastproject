@@ -33,33 +33,27 @@ def post_new(request):
         form = PostForm()
     return render (request, 'home/post_new.html', {'form':form,})
 
-def post_order(request,post_id):
-    quantity = int(request.POST.get('quantity'))
-    product = Product.objects.get(pk=post_id)
-    user = request.user
-    categories = Category.objects.all()
-    initial = {'name': product.name, 'amount': product.price, 'quantity': quantity}
-    # cart = Cart.objects.filter(user=user)
-    if request.method == 'POST':
-            form = OrderForm(request.POST, initial=initial)
-            if form.is_valid():
-                order = form.save(commit=False)
-                order.user = user
-                order.quantity = quantity
-                order.products = product
-                order.save()
-                return redirect('home/order_list.html', user.pk)
 
-            else:
-                form = OrderForm(initial=initial)
+def order_save(request):
+    order = Order()
+    # order.writer = user_name
+    order.product = request.GET['product']
+    order.orderer = request.GET['orderer']
+    order.postcode = request.GET['postcode']
+    order.address = request.GET['address']
+    order.phone1 = request.GET['phone1']
+    order.phone2 = request.GET['phone2']
+    order.email = request.GET['email']
+    order.message = request.GET['message']
+    order.created_date = timezone.datetime.now()
+    order.price = potato_price['order.product']
+    order.delivery_price = del_price['order.product']
+    order.total_price = order.price + order.delivery_price
+    order.save()
+    return redirect('order_detail', order_id=order.pk)
 
-            return render(request, 'home/post_order.html', {
-                'form': form,
-                'quantity': quantity,
-                'user': user,
-                'product': product,
-                'categories': categories,
-            })
+def post_order(request):
+    return render(request, 'home/post_order.html',)
 # def post_order(request):
 #     if request.method=="POST":
 #         form=PostForm(request.POST)
@@ -119,3 +113,21 @@ def comment_delete(request, comment_id):
     post = comment.post
     comment.delete()
     return redirect('detail', post_id=post.id)
+
+def order_save(request):
+    order = Order()
+    # order.writer = user_name
+    order.product = request.GET['product']
+    order.orderer = request.GET['orderer']
+    order.postcode = request.GET['postcode']
+    order.address = request.GET['address']
+    order.phone1 = request.GET['phone1']
+    order.phone2 = request.GET['phone2']
+    order.email = request.GET['email']
+    order.message = request.GET['message']
+    order.created_date = timezone.datetime.now()
+    order.price = potato_price['order.product']
+    order.delivery_price = del_price['order.product']
+    order.total_price = order.price + order.delivery_price
+    order.save()
+    return redirect('order_detail', order_id=order.pk)

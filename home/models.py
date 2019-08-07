@@ -26,18 +26,22 @@ class Comment(models.Model):
         return self.text
 
 class Order(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE, )
-    name = models.CharField(max_length=100, verbose_name='상품명')
-    amount = models.PositiveIntegerField(verbose_name='결제금액')
-    quantity = models.IntegerField(default=1)
-    # products = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_product')
-    order_date = models.DateTimeField(auto_now_add=True)
+    writer = models.CharField(max_length=200, blank=True)
+    product = models.CharField(max_length=200, blank=False)
+    orderer = models.CharField(max_length=200, blank=False)
+    postcode = models.CharField(max_length=100, blank=False)
+    address = models.CharField(max_length=800, blank=False)
+    phone1 = models.CharField(max_length=100, blank=False)
+    phone2 = models.CharField(max_length=100, blank=True)
+    email = models.EmailField(max_length=200, blank=True)
+    message = models.TextField(blank=True)
+    created_date = models.DateTimeField(blank=True, default=timezone.now)
+    price = models.IntegerField(blank=True)
+    delivery_price = models.IntegerField(blank=True, null=True)
+    total_price = models.IntegerField(blank=True)
 
-    #모델 인스턴스를 아이디 값 내림차순 정렬
-    class Meta:
-        ordering = ('-id',)
+    potato_price = {'a-5' : 5000, 'a-10' : 9000, 'a-20' : 16000, 'b-5' : 4000, 'b-10' : 7500, 'b-20' : 14000, 'c-5' : 2500, 'c-10' : 4500, 'c-20' : 8000}
+    del_price = {'a-5' : 3000, 'a-10' : 4000, 'a-20' : 5000, 'b-5' : 3000, 'b-10' : 4000, 'b-20' : 5000, 'c-5' : 3000, 'c-10' : 4000, 'c-20' : 5000}
 
     def __str__(self):
-        return '{} by {}'.format(self.products.name, self.user)
+        return self.orderer

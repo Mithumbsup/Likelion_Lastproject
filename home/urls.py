@@ -6,6 +6,7 @@ urlpatterns = [
     path('mypage/', views.mypage, name='mypage'),
     path('post/<int:post_id>',views.detail, name = 'detail'),
     path('post/order/', views.post_order,name='order'),
+    path('order/complete', views.order_save, name='order_save'),
     path('post/order_list/', views.order_list,name='order_list'),
     path('post/new/', views.post_new, name = 'new'),
     path('post/<int:post_id>/edit/',views.post_edit,name='edit'),
