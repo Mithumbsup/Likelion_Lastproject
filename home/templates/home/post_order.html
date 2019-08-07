@@ -1,8 +1,9 @@
 {% extends "home/base.html"%}
 {% block content %}
-    <div style="align: center; color: black; background-color: #ff000;">
+    {% comment %} <div style="align: center; color: black; background-color: rgb(253, 64, 121);"> {% endcomment %}
         <div style="align-text: left; margin-left: 370px; margin-top: -20px; margin-bottom: -5px;">
             <form action="{% url 'order_save' %}" style="font-size: 17px;"><br>
+                <a href="{% url 'home' %}">HOME</a>
                 <p>  주문상품(*) : 
                     <select name="product" style="margin-left: 10px;">
                         <option value="">상품을 선택하세요.</option>
