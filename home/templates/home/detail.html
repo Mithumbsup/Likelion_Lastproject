@@ -1,5 +1,6 @@
 {%extends "home/base.html"%}
 {% block content %}
+{% load staticfiles %}
 <div class="row">
     <div class="col-xs-4">
         <img src="{{ post.image.url }}" id="detail">
@@ -10,6 +11,9 @@
         <h2><b>{{post.title}}</b></h2>
     </div>
 </div>
+<h3><b>유해성분 <img src="{% static "유해.png" %}" width="25px" height="25px"></b></h3>
+<hr>
+<p>{{post.bad}}</p>
 <h3><b>상세설명</b></h3>
 <hr>
 <p>{{post.text}}

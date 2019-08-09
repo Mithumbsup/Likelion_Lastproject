@@ -46,38 +46,41 @@
 <body>
     <!--상단-->
     <div class="container-fluid" id="content">
+        <div style="float: right">        
+                {% if user.is_active %}
+            <p>
+                <b style="color: white;">
+                    <a style="margin-right: 10%;  margin-top: 5%; background-color: #fff; color= #f39;"
+                        class="btn btn-outline-light btn-lg active" role="button" href="{% url 'mypage'%}">Mypage</a></p></b>   
+        {% endif %}   
+     </div>
         <div class="row">
             <div class="col-xs-2">
-                    <a href="{% url 'home' %}"><img src="{% static "알고쓰자.png" %}" id="logo"></a>
+                <a href="{% url 'home' %}"><img src="{% static "알고쓰자.png" %}" id="logo"></a>
             </div>
             <div class="col-xs-4">
-                    <a href="{% url 'home' %}"><img src="{% static "생리대1.png" %}" id="topphoto"></a>
+                <a href="{% url 'home' %}"><img src="{% static "생리대1.png" %}" id="topphoto"></a>
             </div>
             <div class="col-xs-6" style="text-align: left">
+            <h2 style="margin-top: 10%; color: white;">생리대도 이제는 알고쓰자</h2>
+            <p style="color: white;">생리대의 주요성분과 상세설명 등 자세한 정보를 확인하세요.</p>
+            <div style="text-align: right;">
                 {% if user.is_active %}
-                <p> 
+                <p>
                     <b style="color: white;">
-                    <a style="margin-left: 80%;  margin-top: 5%; background-color: #fff; color= #f39;" class="btn btn-outline-light btn-lg active" role="button" href="{% url 'mypage'%}">My page</a></p></b></div>
+                        {{ user.username }}님 반갑습니다
+                        <a href="{% url 'logout' %}">Logout</a></p></b>
+                {% else %}
+                <p>
+                    <b style="color: white;">
+                        <br><br><br>
+                        <a href="{% url 'signup' %}">Signup</a>
+                        <a href="{% url 'login' %}">Login</a></p></b>
                 {% endif %}
-                <h2 style="margin-top: 10%; color: white;">생리대도 이제는 알고쓰자</h2>
-                <p style="color: white;">생리대의 주요성분과 상세설명 등 자세한 정보를 확인하세요.</p>
-                <div style="text-align: right;">
-                    {% if user.is_active %}
-                    <p>
-                        <b style="color: white;">
-                            {{ user.username }}님 반갑습니다
-                            <a href="{% url 'logout' %}">Logout</a></p></b>
-                    {% else %}
-                    <p>
-                        <b style="color: white;">
-                            <br><br><br>
-                            <a href="{% url 'signup' %}">Signup</a>
-                            <a href="{% url 'login' %}">Login</a></p></b>
-                    {% endif %}
-                </div>
-                <!--상단 끝-->
             </div>
+            <!--상단 끝-->
         </div>
+    </div>
     </div>
     <!--아래내용-->
     <div>

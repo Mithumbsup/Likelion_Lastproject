@@ -31,8 +31,9 @@ def post_new(request):
             return redirect('detail', post_id = post.pk)
     else:
         form = PostForm()
-    return render (request, 'home/post_new.html', {'form':form,})
-
+    
+    return render (request, 'home/post_new.html', {'form':form})
+    
 
 def order_save(request):
     order = Order()
