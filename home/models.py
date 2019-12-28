@@ -45,8 +45,6 @@ class Order(models.Model):
     delivery_price = models.IntegerField(blank=True, null=True)
     total_price = models.IntegerField(blank=True)
 
-    potato_price = {'a-5' : 5000, 'a-10' : 9000, 'a-20' : 16000, 'b-5' : 4000, 'b-10' : 7500, 'b-20' : 14000, 'c-5' : 2500, 'c-10' : 4500, 'c-20' : 8000}
-    del_price = {'a-5' : 3000, 'a-10' : 4000, 'a-20' : 5000, 'b-5' : 3000, 'b-10' : 4000, 'b-20' : 5000, 'c-5' : 3000, 'c-10' : 4000, 'c-20' : 5000}
-
+   
     def __str__(self):
         return self.order

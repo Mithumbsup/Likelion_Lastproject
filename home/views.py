@@ -5,6 +5,9 @@ from .forms import PostForm, CommentForm
 from .forms import OrderForm
 from django.contrib.auth.decorators import login_required
 
+potato_price = {'a-5' : 5000, 'a-10' : 9000, 'a-20' : 16000, 'b-5' : 4000, 'b-10' : 7500, 'b-20' : 14000, 'c-5' : 2500, 'c-10' : 4500, 'c-20' : 8000}
+del_price = {'a-5' : 3000, 'a-10' : 4000, 'a-20' : 5000, 'b-5' : 3000, 'b-10' : 4000, 'b-20' : 5000, 'c-5' : 3000, 'c-10' : 4000, 'c-20' : 5000}
+
 # Create your views here.
 def home(request):
     posts = Post.objects.all
