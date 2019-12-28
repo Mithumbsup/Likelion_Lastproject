@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
-    posts = Post.objects
+    posts = Post.objects.all
     return render(request, 'home/home.html', {'posts':posts})
 
 @login_required
