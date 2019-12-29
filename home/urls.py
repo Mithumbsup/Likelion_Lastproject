@@ -1,5 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('posts', views.PostViewSet)
+router.register('comments', views.CommentViewSet)
+router.register('orders', views.OrderViewSet)
 
 urlpatterns = [
     path('home/',views.home, name='home'),
@@ -13,4 +19,7 @@ urlpatterns = [
     path('post/<int:post_id>/delete',views.post_delete, name='delete'),
     path('post/<int:post_id>/comment/',views.add_comment,name='add_comment'),
     path('comment/<int:comment_id>/delete/',views.comment_delete,name='comment_delete'),
+    
+    # 
+    path('api/', include(router.urls))
 ]

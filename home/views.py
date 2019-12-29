@@ -3,6 +3,8 @@ from .models import Post, Comment, Order
 from django.utils import timezone
 from .forms import PostForm, CommentForm
 from .forms import OrderForm
+from rest_framework import viewsets
+from .serializers import PostSerializer, CommentSerializer, OrderSerializer
 from django.contrib.auth.decorators import login_required
 
 potato_price = {'a-5' : 5000, 'a-10' : 9000, 'a-20' : 16000, 'b-5' : 4000, 'b-10' : 7500, 'b-20' : 14000, 'c-5' : 2500, 'c-10' : 4500, 'c-20' : 8000}
@@ -135,3 +137,16 @@ def order_save(request):
     order.total_price = order.price + order.delivery_price
     order.save()
     return redirect('order_detail', order_id=order.pk)
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer

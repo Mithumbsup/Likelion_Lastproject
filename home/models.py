@@ -4,11 +4,11 @@ from django.conf import settings
 # Create your models here.
 
 class Post(models.Model):
-    author=models.ForeignKey('auth.User',on_delete=models.CASCADE)
-    brand=models.CharField(max_length=200)
-    title=models.CharField(max_length=200)
-    text=models.TextField()
-    component=models.TextField()
+    author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
+    brand = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    component =models.TextField()
     image = models.ImageField(upload_to="images/")
     bad = models.TextField()
     
@@ -47,4 +47,4 @@ class Order(models.Model):
 
    
     def __str__(self):
-        return self.order
+        return self.orderer
