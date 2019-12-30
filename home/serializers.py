@@ -11,11 +11,9 @@ class PostSerializer(serializers.HyperlinkedModelSerializer) :
 class CommentSerializer(serializers.HyperlinkedModelSerializer) :
     class Meta:
         model = Comment
-        fields = ('post','nickname','text','created_date' )
+        fields = '__all__'
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer) :
     class Meta:
         model = Order
-        fields = ('writer','product','orderer','postcode','address','phone1','phone2',
-                  'email', 'message', 'created_date', 'price', 'delivery_price','total_price'
-                 )
+        fields = '__all__'
